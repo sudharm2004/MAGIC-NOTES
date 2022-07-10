@@ -17,11 +17,26 @@ addBtn.addEventListener('click', function () {
         //strings
         notesobj = JSON.parse(notes);
     }
+
     //adding the text that we enetered into notesobj array
     notesobj.push(addTxt.value);
     //now to store the array(notesobj) we use stringify
     localStorage.setItem('notes', JSON.stringify(notesobj));
     addTxt.value = "";
+
+    //CREATING THE SAME NOTESTITLE ARRAY IN LOCAL STORAGE LIKE NOTES ARRAY
+    let addTitle = document.getElementById('addTitle');
+    let notesTitle=localStorage.getItem('notesTitle');
+    let notesTitleObj;
+    if (notesTitle == null) {
+        notesTitleObj = []
+    }
+    else {
+        notesTitleObj = JSON.parse(notesTitle);
+    }
+    notesTitleObj.push(addTitle.value);
+    localStorage.setItem('notesTitle', JSON.stringify(notesTitleObj));
+    addTitle.value = "";
     showNotes();
 });
 
@@ -37,12 +52,24 @@ function showNotes() {
     else {
         notesobj = JSON.parse(notes);
     }
+    //SAME LOGIC AS NOTES
+    let notesTitle=localStorage.getItem('notesTitle');
+    let notesTitleObj;
+    if (notesTitle == null) {
+        notesTitleObj = []
+    }
+    else {
+        notesTitleObj = JSON.parse(notesTitle);
+    }
+
     let html = "";
     notesobj.forEach(function (element, index) {
+        //GETTING THE NOTES TITLE FROM LOCAL STORAGE
+        let b=notesTitleObj[index];
         html += `
 <div class="notesCard my-2 mx-2 card" style="width: 18rem;">
     <div class="card-body">
-      <h5 class="card-title">${'NOTE' + (index + 1)}</h5>
+      <h5 class="card-title">${b}</h5>
       <p class="card-text">${element}</p>
       <a id="${index}" class="btn btn-primary" onclick="deleteNote(this.id)">Delete Note</a>
     </div>
@@ -67,17 +94,17 @@ function deleteNote(index) {
     // console.log(index);
     //CODE TO REMOVE THE NOTE(DESIRED NOTE) TEXT FROM LOCAL STORAGE
     let notes = localStorage.getItem('notes');
-    let notesobj;
-    if (notes == null) {
-        notesobj = []
-    }
-    else {
-        notesobj = JSON.parse(notes);
-    }
+    let notesobj = JSON.parse(notes);
     notesobj.splice(index, 1);
     localStorage.setItem('notes', JSON.stringify(notesobj));
+
+    let notesTitle=localStorage.getItem('notesTitle');
+    let notesTitleObj=JSON.parse(notesTitle);
+    notesTitleObj.splice(index, 1);
+    localStorage.setItem('notesTitle', JSON.stringify(notesTitleObj));
     showNotes();
 }
+
 
 //CODE TO FILTER THE SEARCHED NOTE
 let search=document.getElementById('searchText');
