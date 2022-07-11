@@ -69,7 +69,7 @@ function showNotes() {
         html += `
 <div class="notesCard my-2 mx-2 card" style="width: 18rem;">
     <div class="card-body">
-      <h5 class="card-title">${b}</h5>
+      <h5 class="card-title" id="noteTitle">${b}</h5>
       <p class="card-text">${element}</p>
       <a id="${index}" class="btn btn-primary" onclick="deleteNote(this.id)">Delete Note</a>
     </div>
@@ -113,11 +113,18 @@ search.addEventListener('input',function () {
     // console.log('input event fired',inputVal)
 
     let notesCard=document.getElementsByClassName('notesCard');
+    console.log(notesCard);
+
     //RUNNING FOR EACH NOTESCARD ELEMENT
     Array.from(notesCard).forEach(function (element) {
         let cardTxt=element.getElementsByTagName("p")[0].innerText;
-        // console.log( typeof(cardTxt),cardTxt);
+        let noteTitle=element.querySelector("#noteTitle").innerText;
+        console.log( typeof(cardTxt),cardTxt,noteTitle);
+
         if (cardTxt.includes(inputVal)) {
+            element.style.display="block";
+        }
+        else if(noteTitle.includes(inputVal)){
             element.style.display="block";
         }
         else{
