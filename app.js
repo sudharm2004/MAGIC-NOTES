@@ -8,7 +8,7 @@ let addBtn = document.getElementById('addBtn');
 addBtn.addEventListener('click', function () {
     //GRABBING THE TEXT AREA IN WHICH WE ARE WRITING THE THE NOTE
     let addTxt = document.getElementById('addTxt');
-    let noteTitle=document.getElementById('addTitle');
+    let noteTitle = document.getElementById('addTitle');
     let notes = localStorage.getItem('notes');
     let notesobj;
     if (notes == null) {
@@ -19,11 +19,11 @@ addBtn.addEventListener('click', function () {
         //strings
         notesobj = JSON.parse(notes);
     }
-    let notes_title_obj={
-        title:addTitle.value,
-        notes:addTxt.value,
+    let notes_title_obj = {
+        title: addTitle.value,
+        notes: addTxt.value,
     }
-    notes_title_obj.notes=notes_title_obj.notes.replace(/\n/g, '<br>');
+    notes_title_obj.notes = notes_title_obj.notes.replace(/\n/g, '<br>');
     //adding the text that we enetered into notesobj array
     notesobj.push(notes_title_obj);
     //now to store the array(notesobj) we use stringify
@@ -86,8 +86,17 @@ let search = document.getElementById('searchText');
 search.addEventListener('input', function () {
     let inputVal = search.value;
 
+
     let notesCard = document.getElementsByClassName('notesCard');
     console.log(notesCard);
+
+    let input_note = document.getElementsByClassName('hide');
+    Array.from(input_note).forEach(function (element) {
+        element.style.display = 'none';
+    }
+    );
+
+
 
     //RUNNING FOR EACH NOTESCARD ELEMENT
     Array.from(notesCard).forEach(function (element) {
@@ -106,4 +115,18 @@ search.addEventListener('input', function () {
         }
     })
 })
+
+function onblurfun() {
+    let input_note = document.getElementsByClassName('hide');
+    Array.from(input_note).forEach(function (element) {
+        element.style.display = 'block';
+    }
+    );
+    let notesCard = document.getElementsByClassName('notesCard');
+    Array.from(notesCard).forEach(function (element) {
+        element.style.display = 'block';
+    }
+    );
+    search.value = "";
+};
 
