@@ -46,17 +46,6 @@ function showNotes() {
         notesobj = JSON.parse(notes);
     }
 
-
-    //SAME LOGIC AS NOTES
-    let notesTitle = localStorage.getItem('notesTitle');
-    let notesTitleObj;
-    if (notesTitle == null) {
-        notesTitleObj = []
-    }
-    else {
-        notesTitleObj = JSON.parse(notesTitle);
-    }
-
     let html = "";
     notesobj.forEach(function (element, index) {
         html += `
