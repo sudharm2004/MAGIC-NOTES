@@ -51,11 +51,9 @@ function showNotes() {
         html += `
 <div class="notesCard my-2 mx-2 card" style="width: 18rem;">
     <div class="card-body">
-      <h4 class="card-title noteTitle" contenteditable="true">${element.title}</span></h4>
+      <h4 class="card-title noteTitle" contenteditable="true">${element.title}</span></h4><hr>
       <p class="card-text" contenteditable="true">${element.notes}</p>
       <a id="${index}" class="btn btn-primary" onclick="deleteNote(this.id)">Delete Note</a>  
-
-
     </div>
   </div>
 `;
@@ -86,16 +84,18 @@ let search = document.getElementById('searchText');
 search.addEventListener('input', function () {
     let inputVal = search.value;
 
-
+    //CODE TO HIDE THE MAGIC NOTES INPUT FROM THE SCREEN
     let notesCard = document.getElementsByClassName('notesCard');
     console.log(notesCard);
-
     let input_note = document.getElementsByClassName('hide');
     Array.from(input_note).forEach(function (element) {
         element.style.display = 'none';
     }
     );
 
+    //IN ORDER TO MAKE THE COMPARISON BETWEEN TEXT IN THE SEARCH BUTTON AND THE NOTES CASE INSENSITIVE AND SPACE INSENSITIVES BY MAKING WHOLE TEXT TO LOWERCASE AND REMOVING THE SPACE IN STARTING AND ENDING OF THE TEXT USING TRIM()
+    inputVal = inputVal.toLowerCase();
+    inputVal = inputVal.trim();
 
 
     //RUNNING FOR EACH NOTESCARD ELEMENT
@@ -103,6 +103,12 @@ search.addEventListener('input', function () {
         let cardTxt = element.getElementsByTagName("p")[0].innerText;
         let noteTitle = element.querySelector(".noteTitle").innerText;
         console.log(typeof (cardTxt), cardTxt, noteTitle);
+
+        //IN ORDER TO MAKE THE COMPARISON BETWEEN TEXT IN THE SEARCH BUTTON AND THE NOTES CASE INSENSITIVE AND SPACE INSENSITIVE
+        cardTxt = cardTxt.toLowerCase();
+        cardTxt = cardTxt.trim();
+        noteTitle = noteTitle.toLowerCase();
+        noteTitle = noteTitle.trim();
 
         if (cardTxt.includes(inputVal)) {
             element.style.display = "block";
@@ -116,6 +122,7 @@ search.addEventListener('input', function () {
     })
 })
 
+//FUNCTION TO SHOW THE MAGIC NOTES INPUT AND THE NOTES THAT HAVE BEEN HIDDEN WHICH WERE NOT FOUND IN EARLIER SEARCH
 function onblurfun() {
     let input_note = document.getElementsByClassName('hide');
     Array.from(input_note).forEach(function (element) {
@@ -129,4 +136,3 @@ function onblurfun() {
     );
     search.value = "";
 };
-
