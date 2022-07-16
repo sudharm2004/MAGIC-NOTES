@@ -40,7 +40,7 @@
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
-                    <input id="searchText" class="form-control me-2" type="search" placeholder="Search Note Using Title or List" aria-label="Search" style="width: 260px;">
+                    <input id="searchText" class="form-control me-2" type="search" placeholder="Search Note Using Title" aria-label="Search" onblur="onblurfun()">
                     <button class="btn btn-outline-success" type="submit" >Search</button>
                 </form>
             </div>
@@ -49,8 +49,8 @@
 
     <!-- CONTAINER THAT INCLUDES ALL ELEMENTS -->
     <div class="container my-3">
-        <h1>Welcome To Magic Notes</h1>
-        <div class="card">
+        <h1 class="hide">Welcome To Magic Notes</h1>
+        <div class="card hide">
             <div class="card-body">
 
                 <h4 class="card-title">Title of the note</h4>
