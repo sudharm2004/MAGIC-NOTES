@@ -51,8 +51,8 @@ function showNotes() {
         html += `
 <div class="notesCard my-2 mx-2 card" style="width: 18rem;">
     <div class="card-body">
-      <h4 class="card-title noteTitle">${element.title}</span></h4>
-      <p class="card-text">${element.notes}</p>
+      <h4 class="card-title noteTitle" contenteditable="true">${element.title}</span></h4>
+      <p class="card-text" contenteditable="true">${element.notes}</p>
       <a id="${index}" class="btn btn-primary" onclick="deleteNote(this.id)">Delete Note</a>  
 
 
