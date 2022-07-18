@@ -15,10 +15,6 @@
                 margin: 5px;
                 color: lightgray;
             }
-            .noteTitle{
-                display: flex;
-                justify-content: space-between;
-            }
         </style>
 </head>
 
@@ -27,7 +23,7 @@
     <!-- NAVBAR CODE FROM BOOTSRAP -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">MAGIC NOTES</a>
+            <a class="navbar-brand" href="#" contenteditable="true">MAGIC NOTES</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -41,7 +37,8 @@
                 </ul>
                 <form class="d-flex" role="search">
                     <input id="searchText" class="form-control me-2" type="search" placeholder="Search Note Using Title" aria-label="Search" onblur="onblurfun()">
-                    <button class="btn btn-outline-success" type="submit" >Search</button>
+                    <!-- NOT USING THE BUTTON TO SEARCH NOTES RIGHT NOW -->
+                    <!-- <button class="btn btn-outline-success" type="submit" >Search</button> -->
                 </form>
             </div>
         </div>
